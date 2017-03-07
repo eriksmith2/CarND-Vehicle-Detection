@@ -61,7 +61,7 @@ def build_file_list(path, file_type = '.png'):
     return files
 ```
 
-I then shuffled each list to prevent patterns in the order of the files from influencing the training of my classifier.
+I then shuffled each list to improve the accuracy by preventing patterns in the order of the files from influencing the training of my classifier.
 
 Using trial and error, I tweaked the parameters governing the extraction of HOG and color features until I came across a combination that seemed to yield good results in the test accuracy of my classifier:
 
@@ -192,7 +192,7 @@ The `svc_classifier` also splits the training images into a training set (80%) a
 
 ### Sliding Window Search
 
-In order to find cars in test images, and ultimately the video, a sliding window search was used. The idea is to split the input image into smaller windows that can be analyzed and any windows where a car is detected are added to a list of good windows. The parameters that govern the scale and the overlap of the windows were tuned through trial and error on the test images until the search was reliably finding the cars in the image. A sample output image and the code are shown below:
+In order to find cars in test images, and ultimately the video, a sliding window search was used. The idea is to split the input image into smaller windows that can be analyzed and any windows where a car is detected are added to a list of good windows. The parameters that govern the scale and the overlap of the windows were tuned through trial and error on the test images until the search was reliably finding the cars in the image. I found that by using a combination of all three color channel's HOG features, as well as the color features (both spatial and histogram) I was able to improve the reliability of the classifier.  A sample output image and the code are shown below:
 
 ![alt text][image4]
 
